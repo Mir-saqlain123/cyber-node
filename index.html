@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CYBER//NODE — Learning Hub</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --green: #00ff66;
+    --dark-green: #00aa44;
+    --black: #020403;
+    --panel: rgba(0, 20, 10, 0.88);
+    --white: #ffffff;
+    --gray: #8b9a90;
+    --yellow: #ffd600;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--black);
+    color: var(--green);
+    font-family: "Share Tech Mono", monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ================= MATRIX ================= */
+
+#matrix {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    opacity: .14;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 20;
+
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        rgba(0,255,100,.025) 4px
+    );
+}
+
+/* ================= NAVIGATION ================= */
+
+nav {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 7%;
+
+    border-bottom: 1px solid rgba(0,255,100,.3);
+
+    background: rgba(0,10,5,.95);
+
+    position: sticky;
+    top: 0;
+
+    z-index: 10;
+}
+
+.logo {
+    font-size: 22px;
+    text-shadow: 0 0 12px var(--green);
+}
+
+.logo span {
+    color: white;
+}
+
+nav ul {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+}
+
+nav a {
+    color: var(--green);
+    text-decoration: none;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: white;
+    text-shadow: 0 0 10px var(--green);
+}
+
+/* ================= HERO ================= */
+
+.hero {
+    min-height: 78vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 80px 7%;
+}
+
+.hero-content {
+    max-width: 1200px;
+    width: 100%;
+}
+
+.profile-area {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 60px;
+}
+
+.profile-text {
+    flex: 1;
+}
+
+.status {
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.status::before {
+    content: "● ";
+    color: var(--green);
+    text-shadow: 0 0 8px var(--green);
+}
+
+h1 {
+    font-size: clamp(45px, 8vw, 100px);
+    line-height: .9;
+
+    color: white;
+
+    text-shadow:
+        0 0 5px var(--green),
+        0 0 25px var(--green);
+}
+
+h1 span {
+    color: var(--green);
+}
+
+.profile-name {
+    margin-top: 25px;
+
+    font-size: 22px;
+    color: white;
+}
+
+.subtitle {
+    margin-top: 25px;
+
+    font-size: 19px;
+
+    color: #9cffbc;
+
+    line-height: 1.6;
+}
+
+.cursor {
+    animation: blink .7s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* ================= HACKER VISUAL ================= */
+
+.hacker-image {
+    width: 350px;
+    height: 350px;
+
+    border: 2px solid var(--green);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,255,100,.12),
+            transparent 65%
+        );
+
+    box-shadow:
+        0 0 15px var(--green),
+        0 0 45px rgba(0,255,100,.25);
+
+    overflow: hidden;
+}
+
+.hacker-emoji {
+    font-family:
+        "Segoe UI Emoji",
+        "Apple Color Emoji",
+        sans-serif;
+
+    font-size: 150px;
+
+    filter:
+        drop-shadow(0 0 8px var(--green))
+        drop-shadow(0 0 25px rgba(0,255,100,.6));
+
+    transform: translateY(-30px);
+}
+
+.laptop {
+    position: absolute;
+
+    bottom: 35px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 170px;
+    height: 75px;
+
+    border: 2px solid var(--green);
+
+    background: #020804;
+
+    box-shadow: 0 0 18px rgba(0,255,100,.5);
+}
+
+.laptop-screen {
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+
+    text-shadow: 0 0 8px var(--green);
+}
+
+.laptop-base {
+    position: absolute;
+
+    width: 205px;
+    height: 8px;
+
+    bottom: -10px;
+    left: -19px;
+
+    background: var(--green);
+
+    box-shadow: 0 0 12px var(--green);
+}
+
+/* ================= BUTTONS ================= */
+
+.buttons {
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 30px;
+
+    flex-wrap: wrap;
+}
+
+button {
+    background: transparent;
+
+    border: 1px solid var(--green);
+
+    color: var(--green);
+
+    padding: 13px 22px;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition: .25s;
+}
+
+button:hover {
+    background: var(--green);
+
+    color: black;
+
+    box-shadow:
+        0 0 25px rgba(0,255,100,.5);
+}
+
+/* ================= SAFETY NOTICE ================= */
+
+.safety {
+    margin-top: 50px;
+
+    border: 1px solid rgba(0,255,100,.35);
+
+    background: rgba(0,30,15,.75);
+
+    padding: 20px;
+
+    text-align: center;
+}
+
+.safety-title {
+    color: var(--green);
+
+    font-size: 18px;
+
+    margin-bottom: 8px;
+}
+
+.safety-text {
+    color: #9cffbc;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+/* ================= SECTION ================= */
+
+section.content-section {
+    padding: 70px 7%;
+
+    max-width: 1300px;
+
+    margin: auto;
+}
+
+.section-title {
+    font-size: 30px;
+
+    margin-bottom: 10px;
+
+    text-shadow:
+        0 0 10px var(--green);
+}
+
+.section-description {
+    color: var(--gray);
+
+    margin-bottom: 30px;
+
+    line-height: 1.6;
+}
+
+/* ================= LEARNING CARDS ================= */
+
+.grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(240px, 1fr));
+
+    gap: 20px;
+}
+
+.card {
+    background: var(--panel);
+
+    border: 1px solid rgba(0,255,100,.25);
+
+    padding: 25px;
+
+    position: relative;
+
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+
+    border-color: var(--green);
+
+    box-shadow:
+        0 0 20px rgba(0,255,100,.15);
+}
+
+.card-icon {
+    font-size: 35px;
+
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    color: white;
+
+    font-size: 20px;
+
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: var(--gray);
+
+    line-height: 1.6;
+
+    font-size: 14px;
+}
+
+.card button {
+    margin-top: 18px;
+}
+
+/* ================= LECTURES ================= */
+
+.lecture {
+    background: var(--panel);
+
+    border: 1px solid rgba(0,255,100,.25);
+
+    padding: 25px;
+
+    margin-bottom: 15px;
+}
+
+.lecture h3 {
+    color: white;
+
+    margin-bottom: 10px;
+}
+
+.lecture p {
+    color: var(--gray);
+
+    line-height: 1.6;
+}
+
+.lecture-tag {
+    display: inline-block;
+
+    margin-bottom: 12px;
+
+    padding: 5px 10px;
+
+    border: 1px solid var(--green);
+
+    color: var(--green);
+
+    font-size: 12px;
+}
+
+/* ================= RESOURCES ================= */
+
+.resource {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    background: var(--panel);
+
+    border: 1px solid rgba(0,255,100,.25);
+
+    padding: 18px 20px;
+
+    margin-bottom: 12px;
+}
+
+.resource-name {
+    color: white;
+}
+
+.resource-type {
+    color: var(--gray);
+
+    font-size: 13px;
+}
+
+/* ================= TERMINAL ================= */
+
+.terminal {
+    margin-top: 50px;
+
+    background: var(--panel);
+
+    border: 1px solid rgba(0,255,100,.4);
+
+    box-shadow:
+        0 0 30px rgba(0,255,100,.08);
+}
+
+.terminal-header {
+    padding: 12px 18px;
+
+    border-bottom:
+        1px solid rgba(0,255,100,.3);
+
+    color: #888;
+}
+
+.dots {
+    display: inline-flex;
+
+    gap: 6px;
+
+    margin-right: 15px;
+}
+
+.dots i {
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+}
+
+.terminal-body {
+    padding: 25px;
+
+    min-height: 220px;
+
+    max-height: 300px;
+
+    overflow-y: auto;
+}
+
+.line {
+    margin: 9px 0;
+}
+
+.prompt {
+    color: white;
+}
+
+.success {
+    color: var(--green);
+}
+
+.warning {
+    color: var(--yellow);
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    text-align: center;
+
+    border-top:
+        1px solid rgba(0,255,100,.2);
+
+    padding: 30px;
+
+    color: #555;
+
+    line-height: 1.8;
+}
+
+.footer-green {
+    color: var(--green);
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:800px) {
+
+    nav {
+        padding: 0 5%;
+    }
+
+    nav ul {
+        display: none;
+    }
+
+    .hero {
+        padding-top: 50px;
+    }
+
+    .profile-area {
+        flex-direction: column-reverse;
+
+        text-align: center;
+    }
+
+    .hacker-image {
+        width: 280px;
+        height: 280px;
+    }
+
+    .hacker-emoji {
+        font-size: 120px;
+    }
+
+    .laptop {
+        width: 130px;
+        height: 55px;
+    }
+
+    .laptop-base {
+        width: 155px;
+
+        left: -14px;
+    }
+
+    .buttons {
+        justify-content: center;
+    }
+
+    .resource {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<!-- ================= NAVIGATION ================= -->
+
+<nav>
+
+    <div class="logo">
+        CYBER<span>//</span>NODE
+    </div>
+
+    <ul>
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#learn">LEARN</a></li>
+        <li><a href="#lectures">LECTURES</a></li>
+        <li><a href="#resources">RESOURCES</a></li>
+        <li><a href="#system">SYSTEM</a></li>
+    </ul>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+<div class="profile-area">
+
+<div class="profile-text">
+
+<div class="status">
+    SAFE LEARNING ENVIRONMENT
+</div>
+
+<h1>
+    CYBER<br>
+    <span>NODE_01</span>
+</h1>
+
+<div class="profile-name">
+    &gt; OPERATOR:
+    <strong>Mir Saqlain</strong>
+</div>
+
+<div class="subtitle">
+    &gt;
+    <span id="typing"></span>
+    <span class="cursor">█</span>
+</div>
+
+<div class="buttons">
+
+<button onclick="runScan()">
+    [ RUN DEMO ]
+</button>
+
+<button onclick="scrollToLearning()">
+    [ START LEARNING ]
+</button>
+
+</div>
+
+</div>
+
+
+<!-- Hacker visual -->
+
+<div class="hacker-image">
+
+    <div class="hacker-emoji">
+        🕵️‍♂️
+    </div>
+
+    <div class="laptop">
+
+        <div class="laptop-screen">
+            &gt;_ CODE
+        </div>
+
+        <div class="laptop-base"></div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- Safety message -->
+
+<div class="safety">
+
+<div class="safety-title">
+    ✓ SAFE & EDUCATIONAL WEBSITE
+</div>
+
+<div class="safety-text">
+    This website is created for learning programming,
+    computer science and cyber-security concepts.
+    All demonstrations are fictional simulations.
+    No real systems are accessed or attacked.
+</div>
+
+</div>
+
+
+<!-- Terminal -->
+
+<div class="terminal" id="terminal">
+
+<div class="terminal-header">
+
+<span class="dots">
+    <i></i>
+    <i></i>
+    <i></i>
+</span>
+
+root@cyber-node:~
+
+</div>
+
+<div class="terminal-body" id="terminalOutput">
+
+<div class="line">
+<span class="prompt">
+root@node:~$
+</span>
+initialize_learning
+</div>
+
+<div class="line success">
+[+] Learning environment initialized
+</div>
+
+<div class="line success">
+[+] Programming modules ready
+</div>
+
+<div class="line success">
+[+] BCA resources available
+</div>
+
+<div class="line success">
+[+] Safe cyber simulation active
+</div>
+
+<div class="line warning">
+[!] This is an educational simulation
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= LEARNING ================= -->
+
+<section class="content-section" id="learn">
+
+<div class="section-title">
+    // WHAT CAN YOU LEARN?
+</div>
+
+<div class="section-description">
+    Learn programming, web development, databases and
+    computer fundamentals step by step.
+</div>
+
+
+<div class="grid">
+
+<div class="card">
+
+<div class="card-icon">💻</div>
+
+<h3>
+    C Programming
+</h3>
+
+<p>
+    Learn variables, data types, loops,
+    functions, arrays and basic programming logic.
+</p>
+
+<button onclick="showMessage('C Programming module coming soon.')">
+    OPEN MODULE
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">🐍</div>
+
+<h3>
+    Python
+</h3>
+
+<p>
+    Start Python from the basics and gradually
+    build your programming skills.
+</p>
+
+<button onclick="showMessage('Python module coming soon.')">
+    OPEN MODULE
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">🌐</div>
+
+<h3>
+    Web Development
+</h3>
+
+<p>
+    Learn HTML, CSS and JavaScript and create
+    your own websites.
+</p>
+
+<button onclick="showMessage('Web development module coming soon.')">
+    OPEN MODULE
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">🗄️</div>
+
+<h3>
+    SQL & Database
+</h3>
+
+<p>
+    Learn tables, queries, INSERT, UPDATE,
+    DELETE, SELECT and database concepts.
+</p>
+
+<button onclick="showMessage('SQL module coming soon.')">
+    OPEN MODULE
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= LECTURES ================= -->
+
+<section class="content-section" id="lectures">
+
+<div class="section-title">
+    // LATEST LECTURES
+</div>
+
+<div class="section-description">
+    Add your own lectures and articles here.
+</div>
+
+
+<div class="lecture">
+
+<span class="lecture-tag">
+    PROGRAMMING
+</span>
+
+<h3>
+    How to Become a Good Coder
+</h3>
+
+<p>
+    Learn how to build programming logic,
+    practice regularly, solve problems and
+    develop good coding habits.
+</p>
+
+<button onclick="showMessage('Lecture page will open here.')">
+    READ LECTURE
+</button>
+
+</div>
+
+
+<div class="lecture">
+
+<span class="lecture-tag">
+    WEB DEVELOPMENT
+</span>
+
+<h3>
+    How to Start Web Development
+</h3>
+
+<p>
+    Understand HTML, CSS and JavaScript
+    and learn how a modern website is created.
+</p>
+
+<button onclick="showMessage('Lecture page will open here.')">
+    READ LECTURE
+</button>
+
+</div>
+
+
+<div class="lecture">
+
+<span class="lecture-tag">
+    BCA
+</span>
+
+<h3>
+    Computer Fundamentals — Beginner Guide
+</h3>
+
+<p>
+    Learn hardware, software, CPU, memory,
+    operating systems and basic computer concepts.
+</p>
+
+<button onclick="showMessage('Lecture page will open here.')">
+    READ LECTURE
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ================= RESOURCES ================= -->
+
+<section class="content-section" id="resources">
+
+<div class="section-title">
+    // STUDY RESOURCES
+</div>
+
+<div class="section-description">
+    Useful study material can be organized here.
+</div>
+
+
+<div class="resource">
+
+<div>
+<div class="resource-name">
+    BCA Notes
+</div>
+
+<div class="resource-type">
+    PDF / NOTES
+</div>
+</div>
+
+<button onclick="showMessage('Add your BCA PDF link here.')">
+    OPEN
+</button>
+
+</div>
+
+
+<div class="resource">
+
+<div>
+<div class="resource-name">
+    Previous Year Papers
+</div>
+
+<div class="resource-type">
+    QUESTION PAPERS
+</div>
+</div>
+
+<button onclick="showMessage('Add your question paper link here.')">
+    OPEN
+</button>
+
+</div>
+
+
+<div class="resource">
+
+<div>
+<div class="resource-name">
+    Programming Practice
+</div>
+
+<div class="resource-type">
+    CODING EXERCISES
+</div>
+</div>
+
+<button onclick="showMessage('Add coding practice material here.')">
+    OPEN
+</button>
+
+</div>
+
+
+<div class="resource">
+
+<div>
+<div class="resource-name">
+    Web Development Notes
+</div>
+
+<div class="resource-type">
+    HTML / CSS / JS
+</div>
+</div>
+
+<button onclick="showMessage('Add your web development notes here.')">
+    OPEN
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ================= SYSTEM ================= -->
+
+<section class="content-section" id="system">
+
+<div class="section-title">
+    // LEARNING SYSTEM STATUS
+</div>
+
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+    COURSES
+</h3>
+
+<div class="number">
+    04+
+</div>
+
+<p>
+    Programming and computer science
+    learning modules.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+    RESOURCES
+</h3>
+
+<div class="number">
+    READY
+</div>
+
+<p>
+    Notes, papers and study material
+    can be added.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+    SECURITY
+</h3>
+
+<div class="number">
+    SAFE
+</div>
+
+<p>
+    Educational simulations only.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+    STATUS
+</h3>
+
+<div class="number">
+    ONLINE
+</div>
+
+<p>
+    Learning platform is active.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<div class="footer-green">
+    CYBER//NODE — LEARNING HUB
+</div>
+
+Learning • Coding • Web Development • Computer Science
+
+<br>
+
+SAFE EDUCATIONAL ENVIRONMENT
+
+<br><br>
+
+OPERATOR:
+<span class="footer-green">
+    Mir Saqlain
+</span>
+
+</footer>
+
+
+<script>
+
+/* ================= MATRIX ================= */
+
+const canvas =
+document.getElementById("matrix");
+
+const ctx =
+canvas.getContext("2d");
+
+const chars =
+"01ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&@<>[]{}";
+
+const fontSize = 15;
+
+let columns;
+let drops;
+
+function resizeCanvas() {
+
+    canvas.width =
+        window.innerWidth;
+
+    canvas.height =
+        window.innerHeight;
+
+    columns =
+        Math.floor(
+            window.innerWidth / fontSize
+        );
+
+    drops =
+        Array(columns).fill(1);
+}
+
+resizeCanvas();
+
+window.addEventListener(
+    "resize",
+    resizeCanvas
+);
+
+function matrix() {
+
+    ctx.fillStyle =
+        "rgba(0,0,0,0.07)";
+
+    ctx.fillRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    ctx.fillStyle =
+        "#00ff66";
+
+    ctx.font =
+        fontSize + "px monospace";
+
+    for(let i = 0; i < drops.length; i++) {
+
+        const text =
+            chars[
+                Math.floor(
+                    Math.random() *
+                    chars.length
+                )
+            ];
+
+        ctx.fillText(
+            text,
+            i * fontSize,
+            drops[i] * fontSize
+        );
+
+        if(
+            drops[i] * fontSize >
+            canvas.height &&
+            Math.random() > .975
+        ) {
+
+            drops[i] = 0;
+        }
+
+        drops[i]++;
+    }
+}
+
+setInterval(matrix, 45);
+
+
+/* ================= TYPING ================= */
+
+const messages = [
+
+    "Learn coding. Build skills.",
+    "Explore programming and technology.",
+    "Study BCA concepts step by step.",
+    "Build your own future with technology."
+
+];
+
+let messageIndex = 0;
+let charIndex = 0;
+let deleting = false;
+
+function typeText() {
+
+    const element =
+        document.getElementById("typing");
+
+    const current =
+        messages[messageIndex];
+
+    if(!deleting) {
+
+        element.textContent =
+            current.substring(
+                0,
+                charIndex++
+            );
+
+        if(
+            charIndex >
+            current.length
+        ) {
+
+            deleting = true;
+
+            setTimeout(
+                typeText,
+                1500
+            );
+
+            return;
+        }
+
+    } else {
+
+        element.textContent =
+            current.substring(
+                0,
+                charIndex--
+            );
+
+        if(charIndex < 0) {
+
+            deleting = false;
+
+            messageIndex =
+                (messageIndex + 1)
+                % messages.length;
+
+            charIndex = 0;
+        }
+    }
+
+    setTimeout(
+        typeText,
+        deleting ? 35 : 65
+    );
+}
+
+typeText();
+
+
+/* ================= DEMO ================= */
+
+function runScan() {
+
+    const output =
+        document.getElementById(
+            "terminalOutput"
+        );
+
+    const lines = [
+
+        "[+] Starting learning demo...",
+        "[+] Loading programming concepts...",
+        "[+] Checking study resources...",
+        "[+] Cyber simulation verified...",
+        "[+] No real systems contacted.",
+        "[✓] Safe educational demo complete."
+
+    ];
+
+    let i = 0;
+
+    const interval =
+        setInterval(() => {
+
+            const line =
+                document.createElement("div");
+
+            line.className =
+                "line success";
+
+            line.textContent =
+                lines[i];
+
+            output.appendChild(line);
+
+            output.scrollTop =
+                output.scrollHeight;
+
+            i++;
+
+            if(
+                i >= lines.length
+            ) {
+
+                clearInterval(interval);
+            }
+
+        }, 500);
+}
+
+
+/* ================= SCROLL ================= */
+
+function scrollToLearning() {
+
+    document
+        .getElementById("learn")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+}
+
+
+/* ================= MESSAGE ================= */
+
+function showMessage(message) {
+
+    alert(message);
+}
+
+</script>
+
+</body>
+</html>
