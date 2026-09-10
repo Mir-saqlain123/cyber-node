@@ -5,7 +5,7 @@ Welcome to **Cyber Node**! This is a premium, hacker-themed educational platform
 ---
 
 ## 🚀 Live Demo
-🔗 **[Explore Cyber Node Live Platform](https://github.io)**
+🔗 **[ https://mir-saqlain123.github.io/cyber-node/)**
 
 ---
 
